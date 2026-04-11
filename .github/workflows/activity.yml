@@ -1,5 +1,8 @@
 name: Natural GitHub Activity Bot
 
+permissions:
+  contents: write
+  
 on:
   schedule:
     - cron: '0 6 * * *'    # 11:30 AM IST
