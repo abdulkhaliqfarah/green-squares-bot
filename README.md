@@ -59,39 +59,6 @@ Each run performs:
 
 ---
 
-## 🎨 Bonus: draw pixel art on your contribution graph
-
-`pixel_art.py` is a small, separate, opt-in tool for the classic **"gitfiti"** trick:
-GitHub's contribution graph is a 7-row (Sun–Sat) grid, one column per week, and it
-only cares about a commit's *recorded* date — not when it was actually pushed. So
-to light up a specific cell, you just need a commit backdated to that day.
-
-It ships with a few hand-verified built-in shapes (`heart`, `diamond`, `square`,
-`frame`), or you can pass your own 7-row pattern file (any non-space/`.`/`·`
-character counts as "on").
-
-```bash
-# See a shape as ASCII, no git involved at all
-python3 pixel_art.py --preview heart
-
-# Dry run: prints the exact dates + commit counts, but touches nothing
-python3 pixel_art.py --pattern heart --start-date 2026-08-02
-
-# Actually make the backdated commits locally (still doesn't push)
-python3 pixel_art.py --pattern heart --start-date 2026-08-02 --commit
-
-# ...and push once you're happy with `git log`
-python3 pixel_art.py --pattern heart --start-date 2026-08-02 --commit --push
-```
-
-`--start-date` must be a Sunday (it'll auto-snap forward to the next one if
-not), and `--intensity 1..4` controls roughly how dark each lit cell renders
-(more commits = darker green — GitHub's exact thresholds aren't published, so
-treat this as approximate). This never touches or rewrites existing commits;
-it only ever appends new ones, same as any other history backfill.
-
----
-
 ## 🚀 Getting Started
 
 ### Clone the repo:
@@ -118,12 +85,9 @@ Make sure the repository is **public** so commits show up on your GitHub profile
 ```
 green-squares-bot/
 ├── commit.py             # Main commit generator script
-├── pixel_art.py          # Optional: draw shapes on the contribution graph
-├── test_pixel_art.py     # Tests for pixel_art.py's date/pattern logic
 ├── daily_log.txt         # Rotating dummy file
 ├── progress.md           # Rotating dummy file
 ├── inspiration.txt       # Rotating dummy file
-├── pixel_art_log.txt     # Content file for pixel_art.py's commits
 ├── commit_log.txt        # Records commit history
 └── .github/
     └── workflows/
