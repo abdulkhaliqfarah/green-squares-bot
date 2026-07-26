@@ -19,3 +19,7 @@ venv/
 # GitHub Actions cache
 .github/workflows/*.log
 .github/workflows/*.bak
+
+# Python virtual env (uv)
+.venv/
+.pytest_cache/
